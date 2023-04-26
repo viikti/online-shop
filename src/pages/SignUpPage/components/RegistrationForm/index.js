@@ -5,6 +5,7 @@ import FormInput from "../../../../commonComponents/FormInput";
 import FormSelect from "../../../../commonComponents/FormSelect";
 
 import FormInputPassword from "../../../../commonComponents/FormInputPassword";
+import { ROUTE_NAMES } from "../../../../routes/RouteName";
 
 import styles from "./styles.module.scss";
 
@@ -79,12 +80,12 @@ const RegistrationForm = ({
       />
 
       <div className={styles.buttons}>
-        {/*<div className={styles.account}>*/}
-        {/*  <p>Already a member?</p>*/}
-        {/*  <NavLink to={ROUTE_NAMES.SIGN_IN} className={styles.accountLink}>*/}
-        {/*    Sign in*/}
-        {/*  </NavLink>*/}
-        {/*</div>*/}
+        <div className={styles.account}>
+          {/*<p>Already a member?</p>*/}
+          <a href={ROUTE_NAMES.SIGN_IN} className={styles.accountLink}>
+            Sign in
+          </a>
+        </div>
 
         <button className={styles.button} type="submit">
           SIGN UP

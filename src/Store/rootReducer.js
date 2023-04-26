@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { persistReducer } from "redux-persist";
+import signInReducer from "../pages/SignIn/reducers";
 
 export const rooteReducer = () => {
   return combineReducers({
-    auth: persistReducer,
+    auth: signInReducer,
   });
 };

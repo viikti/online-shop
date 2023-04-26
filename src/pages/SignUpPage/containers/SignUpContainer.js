@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import omit from "lodash/omit";
 
 import { signUp } from "../api";
 
@@ -25,7 +26,7 @@ const SignUpContainer = () => {
     },
     validationSchema: signUpValidationSchema,
     onSubmit: (values, { resetForm }) => {
-      handleDataLoad(values);
+      handleDataLoad(omit(values, "confirmPassword"));
       resetForm();
     },
   });
