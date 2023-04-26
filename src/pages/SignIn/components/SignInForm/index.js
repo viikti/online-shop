@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 const SingInForm = ({ form, error, handleChange, handleSubmit }) => {
   return (
     <div className={styles.wrapper}>
-      <h2 className={styles.subtitle}>Welcome back</h2>
+      <h2 className={styles.subtitle}></h2>
       <h1 className={styles.title}>Login to Your Account</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <FormInput

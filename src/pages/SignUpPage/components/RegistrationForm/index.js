@@ -80,16 +80,16 @@ const RegistrationForm = ({
       />
 
       <div className={styles.buttons}>
-        <div className={styles.account}>
-          {/*<p>Already a member?</p>*/}
-          <a href={ROUTE_NAMES.SIGN_IN} className={styles.accountLink}>
-            Sign in
-          </a>
-        </div>
+        <div className={styles.account}></div>
 
         <button className={styles.button} type="submit">
           SIGN UP
         </button>
+      </div>
+      <div className={styles.SignIn}>
+        <a className={styles.text} href={ROUTE_NAMES.SIGN_IN}>
+          Already have an account? Sign in
+        </a>
       </div>
     </form>
   </div>
