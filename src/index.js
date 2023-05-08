@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Router from "./routes/Router";
+
 import { Provider } from "react-redux";
-import { persistor, store } from "./Store/configureStore";
 import { PersistGate } from "redux-persist/integration/react";
 
-import { persistStore } from "redux-persist";
+import { persistor, store } from "./Store/configureStore";
+import Router from "./routes/Router";
 import MainLayout from "./commonComponents/MainLayouts";
-import { BrowserRouter } from "react-router-dom";
 
-// const persistor = persistStore(store);
+import { BrowserRouter } from "react-router-dom";
 
 // import "./Static/index.css";
 

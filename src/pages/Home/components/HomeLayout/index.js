@@ -3,6 +3,7 @@ import PropTypes, { checkPropTypes } from "prop-types";
 import Banner from "../../../../commonComponents/Banner";
 
 import styles from "./styles.module.scss";
+import { ROUTE_NAMES } from "../../../../routes/RouteName";
 
 const HomeLayout = ({ onNavigateToShop }) => (
   <div className={styles.wrapper}>
@@ -17,7 +18,9 @@ const HomeLayout = ({ onNavigateToShop }) => (
         onClick={onNavigateToShop}
         className={styles.button}
       >
-        SHOP NOW
+        <a className={styles.button} href={ROUTE_NAMES.POKEMON}>
+          SHOP NOW
+        </a>
       </button>
     </div>
   </div>

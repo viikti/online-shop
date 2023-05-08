@@ -7,39 +7,45 @@ import SnackbarWithAlert from "../../../../commonComponents/Snackbar";
 import styles from "./styles.module.scss";
 
 const SignUpLayout = ({
-  values,
-  errors,
-  onChange,
-  onBlur,
-  touched,
-  onSubmit,
+  formik,
   data,
-  error,
+  errors,
+  // values,
+  // errors,
+  // onChange,
+  // onBlur,
+  // touched,
+  // onSubmit,
+  // data,
+  // error,
 }) => (
   <div className={styles.wrapper}>
     <Banner />
     <RegistrationForm
-      values={values}
-      errors={errors}
-      onChange={onChange}
-      onBlur={onBlur}
-      touched={touched}
-      onSubmit={onSubmit}
+      formik={formik}
+      data={data}
+      errorsResponce={errors}
+      // values={values}
+      // errors={errors}
+      // onChange={onChange}
+      // onBlur={onBlur}
+      // touched={touched}
+      // onSubmit={onSubmit}
     />
-    {data?.data.message && (
-      <SnackbarWithAlert
-        timeAlert={5000}
-        textAlert={data.data.message}
-        severity="success"
-      />
-    )}
-    {error?.response.data.message && (
-      <SnackbarWithAlert
-        timeAlert={5000}
-        textAlert={error?.response.data.message}
-        severity="error"
-      />
-    )}
+    {/*{data?.data.message && (*/}
+    {/*  <SnackbarWithAlert*/}
+    {/*    timeAlert={5000}*/}
+    {/*    textAlert={data.data.message}*/}
+    {/*    severity="success"*/}
+    {/*  />*/}
+    {/*)}*/}
+    {/*{error?.response.data.message && (*/}
+    {/*  <SnackbarWithAlert*/}
+    {/*    timeAlert={5000}*/}
+    {/*    textAlert={error?.response.data.message}*/}
+    {/*    severity="error"*/}
+    {/*  />*/}
+    {/*)}*/}
   </div>
 );
 

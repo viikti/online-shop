@@ -6,13 +6,11 @@ import omit from "lodash/omit";
 
 import { signUp } from "../api";
 
-import useFetching from "../../../Hooks/useFetching";
 import { signUpValidationSchema } from "../validations";
 import SignUpLayout from "../components/SignUpLayout";
+import { useFetching } from "../../../hooks";
 
 const SignUpContainer = () => {
-  const navigate = useNavigate();
-
   const { data, errors, handleDataLoad } = useFetching(signUp);
 
   const formik = useFormik({
@@ -48,13 +46,16 @@ const SignUpContainer = () => {
   // }, [errors]);
   return (
     <SignUpLayout
-      values={formik.values}
-      errors={formik.errors}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      touched={formik.touched}
+      formik={formik}
       data={data}
-      onSubmit={formik.handleSubmit}
+      errors={errors}
+      // values={formik.values}
+      // errors={formik.errors}
+      // onChange={formik.handleChange}
+      // onBlur={formik.handleBlur}
+      // touched={formik.touched}
+      // data={data}
+      // onSubmit={formik.handleSubmit}
     />
   );
 };

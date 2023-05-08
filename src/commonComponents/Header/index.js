@@ -23,6 +23,11 @@ const Header = () => {
         </a>
       </div>
       <div>
+        <a className={styles.menu} href={ROUTE_NAMES.POKEMON}>
+          SHOP
+        </a>
+      </div>
+      <div>
         <a className={styles.signIn} href={ROUTE_NAMES.SIGN_IN}>
           <AccountCircle color="action" fontSize="large" />
           SIGN IN
