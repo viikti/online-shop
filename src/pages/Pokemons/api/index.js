@@ -23,18 +23,3 @@ export const getPokemonsThunk = createAsyncThunk(
     }
   }
 );
-
-//Request By ID
-const getPokemonId = (pokemonId) => mainApi.get(`/products/${pokemonId}`);
-
-export const getPokemonsIdThunk = createAsyncThunk(
-  "dataFetching/getPokemonId",
-  async (payload, { rejectedWithValue }) => {
-    try {
-      const response = await getPokemonId(payload);
-      return response.data;
-    } catch (error) {
-      return rejectedWithValue(error.response.data.message);
-    }
-  }
-);

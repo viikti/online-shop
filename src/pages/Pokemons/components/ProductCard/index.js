@@ -20,7 +20,7 @@ const ProductCard = ({ pokemons }) => {
             </Button>
             <Link to={`/pokemons/${id}`}>
               <Button variant="contained" size="medium" color="info">
-                <a href={ROUTE_NAMES.DETAILS_POKEMON}>DETAILS</a>
+                <a href={`${ROUTE_NAMES.POKEMON}/${id}`}>DETAILS</a>
               </Button>
             </Link>
           </div>

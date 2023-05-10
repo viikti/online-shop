@@ -18,7 +18,7 @@ const authSlice = createSlice({
     });
     builder.addCase(signInThunk.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.isAuthenticated = true;
+      state.isAuth = true;
       state.profileData = payload;
     });
     builder.addCase(signInThunk.rejected, (state, { payload }) => {

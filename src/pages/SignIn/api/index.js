@@ -5,7 +5,7 @@ import LocalStorageService from "../../../services/localStorageService";
 const signInRequest = (body) => mainApi.post("/auth/signIn", body);
 
 export const signInThunk = createAsyncThunk(
-  "auth/signIn",
+  "auth/signInRequest",
   async (payload, { rejectWithValue }) => {
     try {
       const { data } = await signInRequest(payload);

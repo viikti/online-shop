@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import PokemonDetailsView from "../components/PokemonDetailsView";
-import { pokemonsIdSelector } from "../../Pokemons/selectors";
-import { getPokemonsIdThunk } from "../../Pokemons/api";
-import { pokemonsStats } from "../utils/pokemonStats";
+import { getPokemonsIdThunk } from "../api";
+import { pokemonsIdSelector } from "../selectors";
+
+import PokemonDetailsView from "../components/PokemonDetailsView/PokemonDetailsView";
 
 const PokemonDetailsContainer = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ const PokemonDetailsContainer = () => {
   const pokemonDetails = useSelector(pokemonsIdSelector.data);
   const isLoading = useSelector(pokemonsIdSelector.isLoading);
   const errors = useSelector(pokemonsIdSelector.errors);
-  const stats = pokemonsStats(pokemonDetails.stats);
 
   useEffect(() => {
     dispatch(getPokemonsIdThunk(id));
@@ -23,9 +22,8 @@ const PokemonDetailsContainer = () => {
   return (
     <PokemonDetailsView
       pokemonDetails={pokemonDetails}
-      errors={errors}
       isLoading={isLoading}
-      stats={stats}
+      errors={errors}
     />
   );
 };

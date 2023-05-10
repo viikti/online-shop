@@ -9,8 +9,6 @@ import Pagination from "../../../../commonComponents/Pagination";
 import styles from "./styles.module.scss";
 
 const ShopView = ({ pokemons, isLoading, page, onPageChange }) => {
-  // const products = useSelector(mergedWithCartSelector);
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.shopContainer}>

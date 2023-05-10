@@ -10,9 +10,10 @@ import PokeShopLogotip from "../../Static/icons/PokeShopLogotip.png";
 import { ROUTE_NAMES } from "../../routes/RouteName";
 
 import styles from "./styles.module.scss";
+import UserButton from "../UsersButton";
 
 const Header = () => {
-  // const isAuth = useSelector(isAuthSelector);
+  const isAuth = useSelector(isAuthSelector);
 
   return (
     <div className={styles.wrapper}>
@@ -27,12 +28,24 @@ const Header = () => {
           SHOP
         </a>
       </div>
-      <div>
-        <a className={styles.signIn} href={ROUTE_NAMES.SIGN_IN}>
-          <AccountCircle color="action" fontSize="large" />
-          SIGN IN
-        </a>
+      <div className={styles.shoppingCart}>
+        {isAuth ? (
+          <div className={styles.profile}>
+            <UserButton />
+          </div>
+        ) : (
+          <NavLink className={styles.signIn} to={ROUTE_NAMES.SIGN_IN}>
+            <AccountCircle color="action" fontSize="large" />
+            SIGN IN
+          </NavLink>
+        )}
       </div>
+      {/*<div>*/}
+      {/*  <a className={styles.signIn} href={ROUTE_NAMES.SIGN_IN}>*/}
+      {/*    <AccountCircle color="action" fontSize="large" />*/}
+      {/*    SIGN IN*/}
+      {/*  </a>*/}
+      {/*</div>*/}
     </div>
   );
 };

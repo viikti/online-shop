@@ -2,8 +2,6 @@ import PropTypes, { checkPropTypes } from "prop-types";
 import RegistrationForm from "../RegistrationForm";
 import Banner from "../../../../commonComponents/Banner";
 
-import SnackbarWithAlert from "../../../../commonComponents/Snackbar";
-
 import styles from "./styles.module.scss";
 
 const SignUpLayout = ({

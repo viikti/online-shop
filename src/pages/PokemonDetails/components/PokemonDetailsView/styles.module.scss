@@ -72,18 +72,12 @@
 
   .button {
     padding: 10px 60px;
-    color: #fff;
-    background: #000;
+    color: black;
+    background: #fed61b;
 
     &:hover {
       color: rgb(210, 210, 210);
-      background: rgb(13, 13, 13);
+      background: rgb(208, 113, 9);
     }
   }
-}
-
-.changeQuantityButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
