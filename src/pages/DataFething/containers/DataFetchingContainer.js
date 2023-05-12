@@ -1,6 +1,6 @@
 // import React, { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
-// import { getPokemonsThunk } from "../api";
+// import { getPokemonsThunk } from "../Thunk";
 //
 // const DataFetchingContainer = () => {
 //   const [page, handlePageChange] = usePagination(1);

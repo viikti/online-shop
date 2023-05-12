@@ -5,4 +5,5 @@ export const ROUTE_NAMES = {
   POKEMON: "/pokemon",
   DETAILS_POKEMON: "/pokemon/:id",
   PROFILE: "/profile",
+  CART: "/cart",
 };

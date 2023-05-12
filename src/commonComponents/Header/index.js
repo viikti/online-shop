@@ -11,6 +11,7 @@ import { ROUTE_NAMES } from "../../routes/RouteName";
 
 import styles from "./styles.module.scss";
 import UserButton from "../UsersButton";
+import IconCart from "../IconCart";
 
 const Header = () => {
   const isAuth = useSelector(isAuthSelector);
@@ -23,11 +24,15 @@ const Header = () => {
           <p>PokeShop</p>
         </a>
       </div>
+
       <div>
         <a className={styles.menu} href={ROUTE_NAMES.POKEMON}>
           SHOP
         </a>
       </div>
+      <NavLink className={styles.cart} to={ROUTE_NAMES.CART}>
+        <IconCart />
+      </NavLink>
       <div className={styles.shoppingCart}>
         {isAuth ? (
           <div className={styles.profile}>
@@ -40,12 +45,6 @@ const Header = () => {
           </NavLink>
         )}
       </div>
-      {/*<div>*/}
-      {/*  <a className={styles.signIn} href={ROUTE_NAMES.SIGN_IN}>*/}
-      {/*    <AccountCircle color="action" fontSize="large" />*/}
-      {/*    SIGN IN*/}
-      {/*  </a>*/}
-      {/*</div>*/}
     </div>
   );
 };

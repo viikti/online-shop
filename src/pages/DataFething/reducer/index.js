@@ -2,7 +2,7 @@
 // import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 //
 // import { mainApi } from "../../../config/mainApi";
-// import { getPokemonsThunk } from "../api";
+// import { getPokemonsThunk } from "../Thunk";
 //
 // const initialState = {
 //   data: [],

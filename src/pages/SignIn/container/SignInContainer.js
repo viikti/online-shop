@@ -1,13 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
 import SignInView from "../components/SignInView";
 import { signInThunk } from "../api";
 import useForm from "../../../hooks/useForm";
+import { errorAuthSelector, isAuthSelector } from "../../../selectors";
 
 const SignInContainer = () => {
   const dispatch = useDispatch();
+  const isAuth = useSelector(isAuthSelector);
+  const error = useSelector(errorAuthSelector);
 
   const { handleChange, form, handleReset } = useForm({
     email: "",
@@ -24,7 +27,7 @@ const SignInContainer = () => {
   return (
     <SignInView
       form={form}
-      // error={error}
+      error={error}
       handleNotification={handleSubmit}
       handleSubmit={handleSubmit}
       handleChange={handleChange}

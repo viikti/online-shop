@@ -7,31 +7,25 @@ import FormInputPassword from "../../../../commonComponents/FormInputPassword";
 import { ROUTE_NAMES } from "../../../../routes/RouteName";
 
 import styles from "./styles.module.scss";
+import { NavLink } from "react-router-dom";
 
 const RegistrationForm = ({
   formik,
   data,
   errorsResponce,
-  // values,
-  // errors,
-  // onChange,
-  // onBlur,
-  // touched,
-  // onSubmit,
+  values,
+  errors,
+  onChange,
+  onBlur,
+  touched,
+  onSubmit,
 }) => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>CREATE AN ACCOUNT</h1>
 
-      <form
-        onSubmit={formik.handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 10,
-          padding: 25,
-        }}
-      >
+      <form className={styles.form} onSubmit={formik.handleSubmit}>
+        <label htmlFor="firstName">First Name</label>
         <label htmlFor="firstName">First Name</label>
         <input
           id="firstName"
@@ -122,80 +116,17 @@ const RegistrationForm = ({
           <div style={{ color: "red" }}>{formik.errors.phone}</div>
         )}
 
-        <button type="submit">Submit</button>
+        <div className={styles.buttons}>
+          <button className={styles.button} type="submit">
+            SIGN UP
+          </button>
+        </div>
+        <div className={styles.buttons}>
+          <NavLink to={ROUTE_NAMES.SIGN_IN} className={styles.buttonSignIn}>
+            Sign in
+          </NavLink>
+        </div>
       </form>
-      {/*<form onSubmit={onSubmit} className={styles.form}>*/}
-      {/*  <FormInput*/}
-      {/*    name="email"*/}
-      {/*    type="email"*/}
-      {/*    errors={errors.email}*/}
-      {/*    value={values.email}*/}
-      {/*    onFormikChange={onChange}*/}
-      {/*    onBlur={onBlur}*/}
-      {/*    touched={touched.email}*/}
-      {/*  />*/}
-
-      {/*  <FormInputPassword*/}
-      {/*    name="password"*/}
-      {/*    errors={errors.password}*/}
-      {/*    value={values.password}*/}
-      {/*    onFormikChange={onChange}*/}
-      {/*    onBlur={onBlur}*/}
-      {/*    touched={touched.password}*/}
-      {/*  />*/}
-
-      {/*  <FormInput*/}
-      {/*    name="firstName"*/}
-      {/*    type="firstName"*/}
-      {/*    errors={errors.firstName}*/}
-      {/*    value={values.firstName}*/}
-      {/*    onFormikChange={onChange}*/}
-      {/*    onBlur={onBlur}*/}
-      {/*    touched={touched.firstName}*/}
-      {/*  />*/}
-
-      {/*  <FormInput*/}
-      {/*    name="lastName"*/}
-      {/*    type="lastName"*/}
-      {/*    errors={errors.lastName}*/}
-      {/*    value={values.lastName}*/}
-      {/*    onFormikChange={onChange}*/}
-      {/*    onBlur={onBlur}*/}
-      {/*    touched={touched.lastName}*/}
-      {/*  />*/}
-
-      {/*  <FormSelect*/}
-      {/*    name="gender"*/}
-      {/*    errors={errors.gender}*/}
-      {/*    value={values.gender}*/}
-      {/*    onFormikChange={onChange}*/}
-      {/*    onBlur={onBlur}*/}
-      {/*    touched={touched.gender}*/}
-      {/*  />*/}
-
-      {/*  <FormInput*/}
-      {/*    name="phone"*/}
-      {/*    type="phone"*/}
-      {/*    errors={errors.phone}*/}
-      {/*    value={values.phone}*/}
-      {/*    onFormikChange={onChange}*/}
-      {/*    onBlur={onBlur}*/}
-      {/*    touched={touched.phone}*/}
-      {/*  />*/}
-
-      {/*  <div className={styles.buttons}>*/}
-      {/*    <div className={styles.account}></div>*/}
-
-      {/*    <button className={styles.button} type="submit">*/}
-      {/*      SIGN UP*/}
-      {/*    </button>*/}
-      {/*  </div>*/}
-      {/*  <div className={styles.SignIn}>*/}
-      {/*    <a className={styles.text} href={ROUTE_NAMES.SIGN_IN}>*/}
-      {/*      Already have an account? Sign in*/}
-      {/*    </a>*/}
-      {/*  </div>*/}
-      {/*</form>*/}
     </div>
   );
 };

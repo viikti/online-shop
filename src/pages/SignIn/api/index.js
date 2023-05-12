@@ -10,9 +10,11 @@ export const signInThunk = createAsyncThunk(
     try {
       const { data } = await signInRequest(payload);
       const { accessToken, ...profileData } = data;
+      console.log(accessToken);
       LocalStorageService.saveToken(accessToken);
       return profileData;
     } catch (error) {
+      console.log(`hoi`);
       return rejectWithValue(error.response.data.message);
     }
   }

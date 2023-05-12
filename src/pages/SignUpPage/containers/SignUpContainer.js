@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import { useFormik } from "formik";
+import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import omit from "lodash/omit";
+import { ROUTE_NAMES } from "routes/RouteName";
 
 import { signUp } from "../api";
 
@@ -12,7 +14,7 @@ import { useFetching } from "../../../hooks";
 
 const SignUpContainer = () => {
   const { data, errors, handleDataLoad } = useFetching(signUp);
-
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -28,16 +30,16 @@ const SignUpContainer = () => {
       resetForm();
     },
   });
-  //
-  // useEffect(() => {
-  //   if (data?.data.success) {
-  //     const timeout = setTimeout(() => {
-  //       navigate(ROUTE_NAMES.SIGN_IN);
-  //     }, 2000);
-  //
-  //     return () => clearTimeout(timeout);
-  //   }
-  // }, [data, navigate]);
+
+  useEffect(() => {
+    if (data?.data.success) {
+      const timeout = setTimeout(() => {
+        navigate(ROUTE_NAMES.SIGN_IN);
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [data, navigate]);
   //
   // useEffect(() => {
   //   if (errors?.message) {
@@ -48,14 +50,12 @@ const SignUpContainer = () => {
     <SignUpLayout
       formik={formik}
       data={data}
-      errors={errors}
-      // values={formik.values}
-      // errors={formik.errors}
-      // onChange={formik.handleChange}
-      // onBlur={formik.handleBlur}
-      // touched={formik.touched}
-      // data={data}
-      // onSubmit={formik.handleSubmit}
+      values={formik.values}
+      errors={formik.errors}
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      touched={formik.touched}
+      onSubmit={formik.handleSubmit}
     />
   );
 };
