@@ -6,7 +6,12 @@ import {
   totalPriceSelector,
   cartItemsSelector,
 } from "../pages/Cart/selectors";
-import { addItemThunk, getItemsThunk } from "../pages/Cart/Thunk";
+import {
+  addItemThunk,
+  deleteItemThunk,
+  getItemsThunk,
+  updateItemThunk,
+} from "../pages/Cart/Thunk";
 
 const useCart = () => {
   const dispatch = useDispatch();
@@ -25,44 +30,47 @@ const useCart = () => {
     },
     [dispatch]
   );
-  // const handleDeleteItem = useCallback(
-  //   (id) => {
-  //     dispatch(deleteItem(id));
-  //   },
-  //   [dispatch]
-  // );
-  //
-  // const handleIncrementItem = useCallback(
-  //   (payload) => {
-  //     const reqestBody = {
-  //       id: payload.id,
-  //       quantity: payload.quantity + 1,
-  //     };
-  //     dispatch(updateItem(reqestBody));
-  //   },
-  //   [dispatch]
-  // );
-  //
-  // const handleDecrementItem = useCallback(
-  //   ({ id, quantity }) => {
-  //     if (quantity > 1) {
-  //       const payload = {
-  //         id,
-  //         quantity: quantity - 1,
-  //       };
-  //
-  //       dispatch(updateItem(payload));
-  //     }
-  //   },
-  //   [dispatch]
-  // );
-  //
+  const DeleteItemCart = useCallback(
+    (id) => {
+      dispatch(deleteItemThunk(id));
+    },
+    [dispatch]
+  );
+
+  const IncrementItemCart = useCallback(
+    ({ id, quantity }) => {
+      const requestData = {
+        id,
+        quantity: quantity + 1,
+      };
+      dispatch(updateItemThunk(requestData));
+    },
+    [dispatch]
+  );
+
+  const DecrementItemCart = useCallback(
+    ({ id, quantity }) => {
+      if (quantity > 1) {
+        const requestData = {
+          id,
+          quantity: quantity - 1,
+        };
+
+        dispatch(updateItemThunk(requestData));
+      }
+    },
+    [dispatch]
+  );
+
   return {
     cartItems,
     cartItemsQuantity,
     totalPrice,
     getCartData,
     addItem,
+    DeleteItemCart,
+    IncrementItemCart,
+    DecrementItemCart,
   };
 };
 

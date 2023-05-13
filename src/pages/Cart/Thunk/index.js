@@ -27,3 +27,29 @@ export const addItemThunk = createAsyncThunk(
     }
   }
 );
+
+export const deleteItemThunk = createAsyncThunk(
+  "cart/deleteItem",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await CartService.deleteItem(id);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const updateItemThunk = createAsyncThunk(
+  "cart/updateItem",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await CartService.updateItem(payload);
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
