@@ -1,25 +1,22 @@
 import { mainApi } from "../../config/mainApi";
 
-const BASE_URL = "/cart";
-const ITEM_BASE_URL = `${BASE_URL}/item`;
-
 class CartService {
   static instance = new CartService();
 
-  getCartInfo() {
-    return mainApi.get(BASE_URL);
-  }
+  #BASE_URL = "/cart";
 
-  addItem(itemToAdd) {
-    return mainApi.post(ITEM_BASE_URL, itemToAdd);
+  getItems() {
+    return mainApi.get(this.#BASE_URL);
   }
-
+  addItem(item) {
+    return mainApi.post(`${this.#BASE_URL}/item`, item);
+  }
   deleteItem(id) {
-    return mainApi.delete(`${ITEM_BASE_URL}/${id}`);
+    return mainApi.delete(`${this.#BASE_URL}/item/${id}`);
   }
 
-  updateItem(payload) {
-    return mainApi.patch(ITEM_BASE_URL, payload);
+  updateItem({ id, quantity }) {
+    return mainApi.patch(`${this.#BASE_URL}/item`, { id, quantity });
   }
 }
 

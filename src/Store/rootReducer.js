@@ -1,7 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import signInReducer from "../pages/SignIn/reducers";
 import dataFetchingReducer from "../pages/Pokemons/reducers";
-// import storage from "redux-persist/lib/storage";
 import pokemonDetailsSlice from "../pages/PokemonDetails/reducers";
 import cartSlice from "../pages/Cart/reducers/cartReducer";
 

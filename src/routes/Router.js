@@ -8,6 +8,7 @@ import PokemonContainer from "../pages/Pokemons/container/PokemonsContainer";
 import PokemonDetailsContainer from "../pages/PokemonDetails/containers/PokemonDetailsContainer";
 import ProfileContainer from "../pages/Profile/containers/ProfileContainer";
 import CartContainer from "../pages/Cart/containers/CartContainer";
+import PrivateRoutes from "./PrivateRoutes";
 
 const Router = () => {
   return (
@@ -15,13 +16,16 @@ const Router = () => {
       <Route path={ROUTE_NAMES.HOME} element={<HomeContainer />} />
       <Route path={ROUTE_NAMES.SIGN_UP} element={<SignUpContainer />} />
       <Route path={ROUTE_NAMES.SIGN_IN} element={<SignInContainer />} />
-      <Route path={ROUTE_NAMES.POKEMON} element={<PokemonContainer />} />
+
+      <Route element={<PrivateRoutes />}>
+        <Route path={ROUTE_NAMES.POKEMON} element={<PokemonContainer />} />
+      </Route>
       <Route
         path={ROUTE_NAMES.DETAILS_POKEMON}
         element={<PokemonDetailsContainer />}
       />
-      {/*<Route path={ROUTE_NAMES.CART} element={<CartContainer />} />*/}
       <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
+      <Route path={ROUTE_NAMES.CART} element={<CartContainer />} />
     </Routes>
   );
 };

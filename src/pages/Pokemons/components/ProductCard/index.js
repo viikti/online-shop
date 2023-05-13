@@ -6,7 +6,16 @@ import { upperCase, capitalize } from "lodash";
 
 import styles from "./styles.module.scss";
 import { ROUTE_NAMES } from "../../../../routes/RouteName";
-const ProductCard = ({ pokemons }) => {
+
+const ProductCard = ({
+  pokemons,
+  id,
+  name,
+  image,
+  price,
+  quantity,
+  handleAddCart,
+}) => {
   return (
     <div className={styles.wrapper}>
       {pokemons.map(({ id, name, price, image }) => (
@@ -15,9 +24,17 @@ const ProductCard = ({ pokemons }) => {
           <img src={image} alt={name} />
           <p className={styles.price}> ${price}</p>
           <div className={styles.button}>
-            <Button variant="contained" size="medium" color="warning">
-              Buy
+            <Button
+              onClick={() =>
+                handleAddCart({ id, name, image, price, quantity: 1 })
+              }
+              variant="contained"
+              size="medium"
+              color="warning"
+            >
+              BUY
             </Button>
+
             <Link to={`/pokemons/${id}`}>
               <Button variant="contained" size="medium" color="info">
                 <a href={`${ROUTE_NAMES.POKEMON}/${id}`}>DETAILS</a>
