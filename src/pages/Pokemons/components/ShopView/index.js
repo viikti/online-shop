@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import ShopHeader from "../ShopHeader";
 import ProductCard from "../ProductCard";
 
@@ -10,7 +10,14 @@ import styles from "./styles.module.scss";
 import startCase from "lodash/startCase";
 import { useCard } from "../../../../hooks";
 
-const ShopView = ({ pokemons, isLoading, page, onPageChange }) => {
+const ShopView = ({
+  pokemons,
+  isLoading,
+  page,
+  onPageChange,
+  onNavigateToPokemonDetails,
+  errors,
+}) => {
   const { addItem } = useCard();
 
   return (
@@ -30,6 +37,7 @@ const ShopView = ({ pokemons, isLoading, page, onPageChange }) => {
             price={pokemons.price}
             quantity={pokemons.quantity}
             handleAddCart={addItem}
+            onNavigateToPokemonDetails={onNavigateToPokemonDetails}
           />
         </div>
 
@@ -44,5 +52,13 @@ const ShopView = ({ pokemons, isLoading, page, onPageChange }) => {
     </div>
   );
 };
+
+// ShopView.propTypes = {
+//   isLoading: PropTypes.bool.isRequired,
+//   errors: PropTypes.func,
+//   page: PropTypes.number.isRequired,
+//   onPageChange: PropTypes.func.isRequired,
+//   onNavigateToPokemonDetail: PropTypes.func.isRequired,
+// };
 
 export default ShopView;

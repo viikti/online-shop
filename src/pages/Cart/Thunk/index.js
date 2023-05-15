@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import CartService from "../../../services/CartService";
+import OrderService from "../../../services/OrderService";
+import { useDispatch } from "react-redux";
 
 export const getItemsThunk = createAsyncThunk(
   "cart/getItems",
@@ -50,6 +52,28 @@ export const updateItemThunk = createAsyncThunk(
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
+    }
+  }
+);
+
+//ORDER
+
+export const getOrdersThunk = createAsyncThunk(`order/getOrders`, async () => {
+  const response = await OrderService.getOrders();
+  return response.data;
+});
+
+export const addOrdersThunk = createAsyncThunk(
+  "cart/addOrder",
+  async (newOrder, { dispatch, rejectWithValue }) => {
+    try {
+      const { data } = await OrderService.addOrder(newOrder);
+
+      dispatch(getItemsThunk());
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
     }
   }
 );

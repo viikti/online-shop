@@ -5,6 +5,7 @@ import {
   cartItemsQuantitySelector,
   totalPriceSelector,
   cartItemsSelector,
+  cartSelector,
 } from "../pages/Cart/selectors";
 import {
   addItemThunk,
@@ -15,7 +16,7 @@ import {
 
 const useCart = () => {
   const dispatch = useDispatch();
-
+  const cart = useSelector(cartSelector);
   const cartItems = useSelector(cartItemsSelector);
   const cartItemsQuantity = useSelector(cartItemsQuantitySelector);
   const totalPrice = useSelector(totalPriceSelector);
@@ -30,14 +31,14 @@ const useCart = () => {
     },
     [dispatch]
   );
-  const DeleteItemCart = useCallback(
+  const deleteItemCart = useCallback(
     (id) => {
       dispatch(deleteItemThunk(id));
     },
     [dispatch]
   );
 
-  const IncrementItemCart = useCallback(
+  const incrementItemCart = useCallback(
     ({ id, quantity }) => {
       const requestData = {
         id,
@@ -48,7 +49,7 @@ const useCart = () => {
     [dispatch]
   );
 
-  const DecrementItemCart = useCallback(
+  const decrementItemCart = useCallback(
     ({ id, quantity }) => {
       if (quantity > 1) {
         const requestData = {
@@ -63,14 +64,15 @@ const useCart = () => {
   );
 
   return {
+    cart,
     cartItems,
     cartItemsQuantity,
     totalPrice,
     getCartData,
     addItem,
-    DeleteItemCart,
-    IncrementItemCart,
-    DecrementItemCart,
+    deleteItemCart,
+    incrementItemCart,
+    decrementItemCart,
   };
 };
 

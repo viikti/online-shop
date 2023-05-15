@@ -7,15 +7,25 @@ import ShopView from "../components/ShopView";
 
 import { getPokemonsThunk } from "../api";
 import { pokemonsSelector } from "../selectors";
+import { ROUTE_NAMES } from "../../../routes/RouteName";
+import { useNavigate } from "react-router-dom";
 
 const PokemonContainer = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const pokemons = useSelector(pokemonsSelector.data);
   const isLoading = useSelector(pokemonsSelector.isLoading);
   const errors = useSelector(pokemonsSelector.errors);
 
   const [page, handlePageChange] = usePagination();
+
+  const handleNavigateToPokemonDetail = useCallback(
+    (id) => {
+      navigate(`${ROUTE_NAMES.POKEMON}/${id}`);
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     dispatch(getPokemonsThunk({ page, limit: 10 }));
@@ -28,6 +38,7 @@ const PokemonContainer = () => {
       errors={errors}
       page={page}
       onPageChange={handlePageChange}
+      onNavigateToPokemonDetails={handleNavigateToPokemonDetail}
     />
   );
 };

@@ -1,17 +1,16 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { ROUTE_NAMES } from "../../routes/RouteName";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import { isAuthSelector } from "../../selectors";
 
+import UserButton from "../UsersButton";
 import PokeShopLogotip from "../../Static/icons/PokeShopLogotip.png";
-
-import { ROUTE_NAMES } from "../../routes/RouteName";
+import IconCart from "../IconCart";
 
 import styles from "./styles.module.scss";
-import UserButton from "../UsersButton";
-import IconCart from "../IconCart";
 
 const Header = () => {
   const isAuth = useSelector(isAuthSelector);

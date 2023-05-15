@@ -3,6 +3,7 @@ import signInReducer from "../pages/SignIn/reducers";
 import dataFetchingReducer from "../pages/Pokemons/reducers";
 import pokemonDetailsSlice from "../pages/PokemonDetails/reducers";
 import cartSlice from "../pages/Cart/reducers/cartReducer";
+import orderSlice from "../pages/Cart/reducers/orderReducer";
 
 // import { persistReducer } from "redux-persist";
 
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   dataFetching: dataFetchingReducer,
   pokemonDetail: pokemonDetailsSlice,
   cart: cartSlice,
+  order: orderSlice,
 });

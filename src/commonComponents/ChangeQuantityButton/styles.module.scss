@@ -1,0 +1,30 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+
+	.button {
+		height: 25px;
+		width: 40px;
+		display: flex;
+		color: #fff;
+		background: #000;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.5s ease-out;
+
+		&:hover {
+			color: rgb(210, 210, 210);
+			background: rgb(13, 13, 13);
+		}
+	}
+
+	.quantity {
+		height: 25px;
+		width: 40px;
+		display: flex;
+		background: #fff;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #000;
+	}
+}
