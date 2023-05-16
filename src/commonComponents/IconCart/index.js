@@ -18,7 +18,10 @@ const IconCart = () => {
 
   return (
     <IconButton aria-label="cart">
-      <Badge badgeContent={cartItemsQuantity} color="secondary">
+      <Badge
+        badgeContent={cartItemsQuantity === 0 ? null : cartItemsQuantity}
+        color="secondary"
+      >
         <ShoppingCartIcon />
       </Badge>
     </IconButton>

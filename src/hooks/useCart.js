@@ -13,6 +13,7 @@ import {
   getItemsThunk,
   updateItemThunk,
 } from "../pages/Cart/Thunk";
+import { setValue } from "../pages/Cart/reducers/cartReducer";
 
 const useCart = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const useCart = () => {
     },
     [dispatch]
   );
+
   const deleteItemCart = useCallback(
     (id) => {
       dispatch(deleteItemThunk(id));

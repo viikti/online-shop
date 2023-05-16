@@ -6,6 +6,7 @@ import {
   getItemsThunk,
   updateItemThunk,
 } from "../Thunk";
+import Omit from "lodash/omit";
 
 const initialState = {
   totalPrice: 0,
@@ -67,11 +68,13 @@ const cartSlice = createSlice({
       state.error = null;
     });
     builder.addCase(deleteItemThunk.fulfilled, (state, { payload }) => {
-      const { totalPrice, quantity, itemsList } = payload;
+      const { totalPrice, quantity } = payload.cartState;
       state.isLoading = false;
       state.totalPrice = totalPrice;
       state.quantity = quantity;
-      state.items = itemsList;
+      state.items = state.items.filter(
+        (item) => item.id !== payload.removedItemId
+      );
       state.error = null;
     });
     builder.addCase(deleteItemThunk.rejected, (state, { payload }) => {
@@ -86,15 +89,26 @@ const cartSlice = createSlice({
     });
 
     builder.addCase(updateItemThunk.fulfilled, (state, { payload }) => {
-      const key = payload.updateItem.id;
+      const key = payload.updatedItem.id;
       state.isLoading = false;
-      state.totalPrice = payload.totalPrice.id;
-      state.items[key].quantity = payload.updateItem.quantity;
+      state.totalPrice = payload.cartState.totalPrice;
+      state.items = state.items.map((item) => {
+        if (item.id !== key) {
+          return item;
+        }
+        return {
+          ...item,
+          quantity: payload.updatedItem.quantity,
+          price: payload.updatedItem.price,
+        };
+      });
     });
+
     builder.addCase(updateItemThunk.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
     });
   },
 });
+
 export default cartSlice.reducer;

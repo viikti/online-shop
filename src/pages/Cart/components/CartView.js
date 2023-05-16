@@ -20,6 +20,7 @@ const CartView = ({
   onDecrementItem,
   onCreateOrder,
 }) => {
+  console.log(cartItems);
   return (
     <div className={styles.wrapper}>
       <div className={styles.cartContainer}>
@@ -38,7 +39,7 @@ const CartView = ({
             </NavLink>
           </div>
         ) : (
-          Object.entries(cartItems).map(([id, item]) => (
+          cartItems.map((item) => (
             <div key={item.id} className={styles.cardContainer}>
               <div className={styles.card}>
                 <img height={100} src={item.image} alt="pokemon" />
@@ -54,7 +55,7 @@ const CartView = ({
                 <div className={styles.buttonsContainer}>
                   <DeleteIcon
                     sx={{ cursor: "pointer" }}
-                    onClick={() => onDeleteItem(id)}
+                    onClick={() => onDeleteItem(item.id)}
                   />
 
                   <ChangeQuantityButton
