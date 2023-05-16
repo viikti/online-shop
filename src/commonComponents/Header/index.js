@@ -25,7 +25,7 @@ const Header = () => {
       </div>
 
       <div>
-        <a className={styles.menu} href={ROUTE_NAMES.POKEMON}>
+        <a className={styles.link} href={ROUTE_NAMES.POKEMON}>
           SHOP
         </a>
       </div>

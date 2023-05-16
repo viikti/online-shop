@@ -11,6 +11,11 @@ export const isAuthSelector = createSelector(
   (auth) => auth.isAuth
 );
 
+export const isLoadingSelector = createSelector(
+  baseSelector,
+  (auth) => auth.isLoading
+);
+
 export const errorAuthSelector = createSelector(
   baseSelector,
   (auth) => auth.error

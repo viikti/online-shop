@@ -20,7 +20,6 @@ const CartView = ({
   onDecrementItem,
   onCreateOrder,
 }) => {
-  console.log(cartItems);
   return (
     <div className={styles.wrapper}>
       <div className={styles.cartContainer}>
@@ -48,7 +47,7 @@ const CartView = ({
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.price}>
                     <p>Price: $ </p>
-                    <p>{item.price}</p>
+                    <p>{item.price * item.quantity}</p>
                   </div>
                 </div>
 

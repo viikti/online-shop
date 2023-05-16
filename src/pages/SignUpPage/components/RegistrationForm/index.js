@@ -26,7 +26,6 @@ const RegistrationForm = ({
 
       <form className={styles.form} onSubmit={formik.handleSubmit}>
         <label htmlFor="firstName">First Name</label>
-        <label htmlFor="firstName">First Name</label>
         <input
           id="firstName"
           name="firstName"

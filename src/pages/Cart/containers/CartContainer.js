@@ -22,7 +22,7 @@ const CartContainer = () => {
   } = useCart();
 
   const isLoading = useSelector(CartLoadingSelector);
-
+  //
   // useEffect(() => {
   //   dispatch(updateItemThunk());
   // }, [dispatch]);

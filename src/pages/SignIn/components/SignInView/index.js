@@ -3,12 +3,16 @@ import Banner from "../../../../commonComponents/Banner";
 
 import styles from "./styles.module.scss";
 import SignInForm from "../SignInForm";
+import Spinner from "../../../../commonComponents/Spinner";
+import SnackbarWithAlert from "../../../../commonComponents/Snackbar";
 
 const SignInView = ({
   form,
   error,
   handleChange,
   handleSubmit,
+  isAuth,
+  isLoading,
   // handleNotification,
 }) => (
   <div className={styles.wrapper}>
@@ -19,6 +23,23 @@ const SignInView = ({
       handleChange={handleChange}
       handleSubmit={handleSubmit}
     />
+    {isLoading && <Spinner color="black" />}
+
+    {isAuth && (
+      <SnackbarWithAlert
+        timeAlert={2000}
+        textAlert="You successfully log in. We are glad to welcome you to your store"
+        severity="success"
+      />
+    )}
+
+    {error && (
+      <SnackbarWithAlert
+        timeAlert={3000}
+        textAlert={error.message}
+        severity="error"
+      />
+    )}
   </div>
 );
 
