@@ -43,6 +43,18 @@ export const deleteItemThunk = createAsyncThunk(
   }
 );
 
+export const deleteAllItemThunk = createAsyncThunk(
+  "cart/deleteAll",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await Promise.all(payload);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const updateItemThunk = createAsyncThunk(
   "cart/updateItem",
   async (payload, { rejectWithValue }) => {
@@ -63,8 +75,8 @@ export const getOrdersThunk = createAsyncThunk(`order/getOrders`, async () => {
   return response.data;
 });
 
-export const addOrdersThunk = createAsyncThunk(
-  "cart/addOrder",
+export const createNewOrdersThunk = createAsyncThunk(
+  "order/createNewOrder",
   async (newOrder, { dispatch, rejectWithValue }) => {
     try {
       const { data } = await OrderService.addOrder(newOrder);

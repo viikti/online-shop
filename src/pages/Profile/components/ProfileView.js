@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import UserImage from "../../../Static/icons/UserImage.png";
 
 import styles from "./styles.module.scss";
+import CustomPaginationActionsTable from "./OrdersHistoryView/OrdersHistory";
 
-const ProfileView = ({ usersProfile }) => {
+const ProfileView = ({
+  usersProfile,
+  orders,
+  isLoading,
+  onNavigateOrderHistoryDetail,
+}) => {
   const userName = `${usersProfile.firstName} ${usersProfile.lastName}`;
   return (
     <div className={styles.wrapper}>
@@ -28,8 +34,19 @@ const ProfileView = ({ usersProfile }) => {
               <p>{usersProfile.gender}</p>
               <p>{usersProfile.phone}</p>
             </div>
+          </div>
 
-            <h2 className={styles.subtitle}>Recent Order History</h2>
+          <h2 className={styles.subtitle}>Recent Order History</h2>
+
+          <div className={styles.orderHistoryContainer}>
+            {orders?.length ? (
+              <CustomPaginationActionsTable
+                orders={orders}
+                onNavigateOrderHistoryDetail={onNavigateOrderHistoryDetail}
+              />
+            ) : (
+              <div>You have no order history</div>
+            )}
           </div>
         </div>
       </>

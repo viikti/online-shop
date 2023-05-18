@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import {
   addItemThunk,
+  deleteAllItemThunk,
   deleteItemThunk,
   getItemsThunk,
   updateItemThunk,
@@ -11,7 +12,8 @@ import Omit from "lodash/omit";
 const initialState = {
   totalPrice: 0,
   quantity: 0,
-  items: [],
+  items: {},
+  customerId: null,
   isLoading: false,
   error: null,
 };
@@ -33,6 +35,7 @@ const cartSlice = createSlice({
       state.quantity = quantity;
       state.items = itemsList;
       state.error = null;
+      state.customerId = payload.customerId;
     });
 
     builder.addCase(getItemsThunk.rejected, (state, { payload }) => {
@@ -54,6 +57,7 @@ const cartSlice = createSlice({
       state.quantity = quantity;
       state.items = itemsList;
       state.error = null;
+      state.customerId = payload.customerId;
     });
 
     builder.addCase(addItemThunk.rejected, (state, { payload }) => {
@@ -80,6 +84,19 @@ const cartSlice = createSlice({
     builder.addCase(deleteItemThunk.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
+    });
+
+    builder.addCase(deleteAllItemThunk.pending, (state) => {
+      state.isLoading = true;
+      state.errors = null;
+    });
+    builder.addCase(deleteAllItemThunk.fulfilled, (state) => {
+      state.isLoading = false;
+      state.errors = null;
+    });
+    builder.addCase(deleteAllItemThunk.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.errors = payload;
     });
 
     //UPDATE ITEMS

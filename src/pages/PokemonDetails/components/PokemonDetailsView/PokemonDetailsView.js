@@ -16,6 +16,7 @@ import SPECIAL_DEFENCE from "../../../../Static/icons/SPECIAL_DEFENCE.png";
 import SPEED from "../../../../Static/icons/SPEED.png";
 import { startCase } from "lodash/string";
 import Button from "@mui/material/Button";
+import { ROUTE_NAMES } from "../../../../routes/RouteName";
 
 const productStatsWithIcons = [
   HP,
@@ -26,8 +27,12 @@ const productStatsWithIcons = [
   SPEED,
 ];
 
-const PokemonDetailsView = ({ pokemonDetails, isLoading, errors }) => {
-  const { name, image, price, abilities } = pokemonDetails;
+const PokemonDetailsView = ({
+  pokemonDetails,
+  isLoading,
+  handleAddItemToCart,
+}) => {
+  const { id, name, image, price, abilities } = pokemonDetails;
 
   const pokemonStatsWithIcon = pokemonDetails.stats?.map((stat, index) => ({
     ...stat,
@@ -77,12 +82,15 @@ const PokemonDetailsView = ({ pokemonDetails, isLoading, errors }) => {
                 Price: <span>${price}</span>
               </p>
               <Button
+                onClick={() =>
+                  handleAddItemToCart({ id, name, image, price, quantity: 1 })
+                }
                 className={styles.button}
                 variant="contained"
                 size="medium"
                 color="warning"
               >
-                Buy
+                ADD TO CART
               </Button>
             </div>
           </div>

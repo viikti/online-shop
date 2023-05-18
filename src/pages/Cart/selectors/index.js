@@ -26,22 +26,8 @@ export const CartLoadingSelector = createSelector(
 
 //ORDER SELECTOR
 
-// export const orderSelector = (state) => state.order;
-//
-// export const orderDataSelector = createSelector(
-//     orderSelector,
-//     (order)=> order.data
-// );
-//
-// export const orderIsLoadingSelector = createSelector(
-//     orderSelector,
-//     (order)=> order.isLoading
-// );
-
 export const orderSelector = (state) => state.order.data;
-
 export const orderIsLoading = (state) => state.order.isLoading;
-
 export const orderDetailsSelector = createSelector(
   orderSelector,
   (state, id) => id,
@@ -54,3 +40,17 @@ export const orderDetailsSelector = createSelector(
     return null;
   }
 );
+
+//ORDER SELECTOR
+
+// export const orderSelector = (state) => state.order;
+//
+// export const orderDataSelector = createSelector(
+//     orderSelector,
+//     (order)=> order.data
+// );
+//
+// export const orderIsLoadingSelector = createSelector(
+//     orderSelector,
+//     (order)=> order.isLoading
+// );

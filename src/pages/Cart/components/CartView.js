@@ -8,6 +8,8 @@ import { ROUTE_NAMES } from "../../../routes/RouteName";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import ChangeQuantityButton from "../../../../src/commonComponents/ChangeQuantityButton";
+import SnackbarWithAlert from "../../../commonComponents/Snackbar";
+import { Link } from "@mui/material";
 
 const CartView = ({
   cart,
@@ -19,13 +21,12 @@ const CartView = ({
   onIncrementItem,
   onDecrementItem,
   onCreateOrder,
-}) => {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.cartContainer}>
-        <div className={styles.cart}>
-          <h1 className={styles.title}> MY CART</h1>
-        </div>
+  success,
+}) => (
+  <div className={styles.wrapper}>
+    <div className={styles.cartContainer}>
+      <div className={styles.cart}>
+        <h1 className={styles.title}>My Cart</h1>
 
         {!cartItemsQuantity ? (
           <div className={styles.titleCart}>
@@ -34,7 +35,7 @@ const CartView = ({
               to add to your shopping cart when shopping, click Add to Cart.
             </p>
             <NavLink className={styles.linkShop} to={ROUTE_NAMES.POKEMON}>
-              Follow the link?
+              Back to store
             </NavLink>
           </div>
         ) : (
@@ -50,20 +51,20 @@ const CartView = ({
                     <p>{item.price * item.quantity}</p>
                   </div>
                 </div>
+              </div>
 
-                <div className={styles.buttonsContainer}>
-                  <DeleteIcon
-                    sx={{ cursor: "pointer" }}
-                    onClick={() => onDeleteItem(item.id)}
-                  />
+              <div className={styles.buttonsContainer}>
+                <DeleteIcon
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => onDeleteItem(item.id)}
+                />
 
-                  <ChangeQuantityButton
-                    onDecrementItem={onDecrementItem}
-                    quantity={item.quantity}
-                    onIncrementItem={onIncrementItem}
-                    id={item.id}
-                  />
-                </div>
+                <ChangeQuantityButton
+                  onDecrementItem={onDecrementItem}
+                  quantity={item.quantity}
+                  onIncrementItem={onIncrementItem}
+                  id={item.id}
+                />
               </div>
             </div>
           ))
@@ -72,13 +73,6 @@ const CartView = ({
 
       <div className={styles.totalPriceContainer}>
         <h2 className={styles.titleTotalPrice}>Total price</h2>
-        <div className={styles.subTotal}>
-          <div>SubTotal</div>
-          <div className={styles.price}>
-            <p>$</p>
-            <p>{cart?.totalPrice}</p>
-          </div>
-        </div>
         <div className={styles.total}>
           <div>Total</div>
           <div className={styles.price}>
@@ -86,17 +80,28 @@ const CartView = ({
             <p>{cart?.totalPrice}</p>
           </div>
         </div>
-        {/*<button*/}
-        {/*  type="submit"*/}
-        {/*  disabled={!cartItems}*/}
-        {/*  onClick={onCreateOrder}*/}
-        {/*  className={styles.buttonOrder}*/}
-        {/*>*/}
-        {/*  Order*/}
-        {/*</button>*/}
+        <button
+          type="submit"
+          disabled={!cart.quantity}
+          onClick={onCreateOrder}
+          className={styles.buttonOrder}
+        >
+          Order
+        </button>
       </div>
     </div>
-  );
-};
+    <NavLink className={styles.linkShop} to={ROUTE_NAMES.POKEMON}>
+      Back to store
+    </NavLink>
+
+    {success && (
+      <SnackbarWithAlert
+        timeAlert={3000}
+        textAlert="Your order is accepted!"
+        severity="success"
+      />
+    )}
+  </div>
+);
 
 export default CartView;

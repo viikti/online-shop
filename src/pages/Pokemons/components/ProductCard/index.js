@@ -3,25 +3,13 @@ import React from "react";
 import { Link } from "@mui/material";
 import Button from "@mui/material/Button";
 import { upperCase, capitalize } from "lodash";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 import { ROUTE_NAMES } from "../../../../routes/RouteName";
 import useCart from "../../../../hooks/useCart";
 import styles from "./styles.module.scss";
-import ChangeQuantityButton from "../../../../commonComponents/ChangeQuantityButton";
 
-const ProductCard = ({
-  pokemons,
-  id,
-  name,
-  image,
-  price,
-  quantity,
-  onNavigateToPokemonDetails,
-  handleAddCart,
-}) => {
-  const { addItem, deleteItemCart, incrementItemCart, decrementItemCart } =
-    useCart();
+const ProductCard = ({ pokemons, id, name, image, price }) => {
+  const { addItem } = useCart();
 
   const items = { id, name, image, price, quantity: 1 };
 
@@ -34,29 +22,6 @@ const ProductCard = ({
           <p className={styles.price}> ${price}</p>
 
           <div className={styles.buttonContainer}>
-            {/*{quantity ? (*/}
-            {/*  <div className={styles.cart}>*/}
-            {/*    <ChangeQuantityButton*/}
-            {/*      id={id}*/}
-            {/*      quantity={quantity}*/}
-            {/*      onDecrementItem={decrementItemCart}*/}
-            {/*      onIncrementItem={incrementItemCart}*/}
-            {/*    />*/}
-            {/*    <DeleteIcon*/}
-            {/*      sx={{ cursor: "pointer", fontSize: 27 }}*/}
-            {/*      onClick={() => deleteItemCart(id)}*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*) : (*/}
-            {/*  <button*/}
-            {/*    type="submit"*/}
-            {/*    onClick={() => addItem(items)}*/}
-            {/*    className={styles.button}*/}
-            {/*  >*/}
-            {/*    Add to cart*/}
-            {/*  </button>*/}
-            {/*)}*/}
-
             <Button
               onClick={() =>
                 addItem({

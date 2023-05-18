@@ -6,11 +6,12 @@ import { getPokemonsIdThunk } from "../api";
 import { pokemonsIdSelector } from "../selectors";
 
 import PokemonDetailsView from "../components/PokemonDetailsView/PokemonDetailsView";
+import useCart from "../../../hooks/useCart";
 
 const PokemonDetailsContainer = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const { addItem } = useCart();
   const pokemonDetails = useSelector(pokemonsIdSelector.data);
   const isLoading = useSelector(pokemonsIdSelector.isLoading);
   const errors = useSelector(pokemonsIdSelector.errors);
@@ -24,6 +25,7 @@ const PokemonDetailsContainer = () => {
       pokemonDetails={pokemonDetails}
       isLoading={isLoading}
       errors={errors}
+      handleAddItemToCart={addItem}
     />
   );
 };

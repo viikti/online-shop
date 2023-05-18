@@ -6,6 +6,8 @@ import {
   totalPriceSelector,
   cartItemsSelector,
   cartSelector,
+  CartErrorSelector,
+  CartLoadingSelector,
 } from "../pages/Cart/selectors";
 import {
   addItemThunk,
@@ -21,6 +23,8 @@ const useCart = () => {
   const cartItems = useSelector(cartItemsSelector);
   const cartItemsQuantity = useSelector(cartItemsQuantitySelector);
   const totalPrice = useSelector(totalPriceSelector);
+  const error = useSelector(CartErrorSelector);
+  const isLoading = useSelector(CartLoadingSelector);
 
   const getCartData = useCallback(() => {
     dispatch(getItemsThunk());
@@ -75,6 +79,8 @@ const useCart = () => {
     deleteItemCart,
     incrementItemCart,
     decrementItemCart,
+    error,
+    isLoading,
   };
 };
 

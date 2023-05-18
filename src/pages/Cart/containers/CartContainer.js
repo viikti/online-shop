@@ -1,31 +1,44 @@
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useCallback, useEffect } from "react";
 import CartView from "../components/CartView";
 import useCart from "../../../hooks/useCart";
-import { CartLoadingSelector } from "../selectors";
-import { addOrdersThunk, getItemsThunk, updateItemThunk } from "../Thunk";
+import { useDispatch, useSelector } from "react-redux";
+import { createNewOrdersThunk } from "../Thunk";
 import { handleUpdateState } from "../reducers/orderReducer";
-import { getPokemonsIdThunk } from "../../PokemonDetails/api";
 
 const CartContainer = () => {
   const dispatch = useDispatch();
-
+  const order = useSelector((state) => state.order);
   const {
     cart,
+    cartItems,
     cartItemsQuantity,
     totalPrice,
-    cartItems,
     decrementItemCart,
     incrementItemCart,
     deleteItemCart,
+    error,
+    isLoading,
   } = useCart();
 
-  const isLoading = useSelector(CartLoadingSelector);
-  //
-  // useEffect(() => {
-  //   dispatch(updateItemThunk());
-  // }, [dispatch]);
+  const handleCreateOrder = useCallback(() => {
+    const { cartItemsQuantity, error, isLoading, ...otherCartFields } = cart;
+
+    const { customerId, totalPrice, items } = otherCartFields;
+
+    const customItemsList = Array.from(Object.values(items));
+
+    dispatch(
+      createNewOrdersThunk({
+        customerId,
+        totalPrice,
+        itemsList: customItemsList,
+      })
+    );
+  }, [cart, dispatch]);
+
+  useEffect(() => {
+    dispatch(handleUpdateState());
+  }, [dispatch]);
 
   return (
     <CartView
@@ -37,7 +50,9 @@ const CartContainer = () => {
       onDeleteItem={deleteItemCart}
       onIncrementItem={incrementItemCart}
       onDecrementItem={decrementItemCart}
-      // onCreateOrder={handleCreateOrder}
+      error={error}
+      success={order.success}
+      onCreateOrder={handleCreateOrder}
     />
   );
 };

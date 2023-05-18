@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getOrdersThunk, addOrdersThunk } from "../Thunk";
+import { getOrdersThunk, createNewOrdersThunk } from "../Thunk";
 
 const initialState = {
-  data: null,
+  data: [],
   isLoading: false,
   error: null,
   success: false,
@@ -16,22 +16,25 @@ const orderSlice = createSlice({
     },
 
     extraReducer: (builder) => {
-      builder.addCase(addOrdersThunk.pending, (state) => {
+      builder.addCase(createNewOrdersThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
         state.success = false;
       });
 
-      builder.addCase(addOrdersThunk.fulfilled, (state) => {
-        state.isLoading = true;
+      builder.addCase(createNewOrdersThunk.fulfilled, (state) => {
+        state.isLoading = false;
         state.success = false;
       });
 
-      builder.addCase(addOrdersThunk.rejected, (state, { payload: error }) => {
-        state.isLoading = false;
-        state.error = error;
-        state.success = false;
-      });
+      builder.addCase(
+        createNewOrdersThunk.rejected,
+        (state, { payload: error }) => {
+          state.isLoading = false;
+          state.error = error;
+          state.success = false;
+        }
+      );
 
       builder.addCase(getOrdersThunk.pending, (state) => {
         state.isLoading = true;
