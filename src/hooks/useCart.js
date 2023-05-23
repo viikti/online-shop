@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -11,6 +11,7 @@ import {
 } from "../pages/Cart/selectors";
 import {
   addItemThunk,
+  deleteAllItemThunk,
   deleteItemThunk,
   getItemsThunk,
   updateItemThunk,
@@ -39,6 +40,14 @@ const useCart = () => {
   const deleteItemCart = useCallback(
     (id) => {
       dispatch(deleteItemThunk(id));
+    },
+    [dispatch]
+  );
+
+  const deleteAllItemsCart = useCallback(
+    (items) => {
+      const promiseMy = items.map(({ id }) => dispatch(deleteItemThunk(id)));
+      dispatch(deleteAllItemThunk(promiseMy));
     },
     [dispatch]
   );
@@ -76,6 +85,7 @@ const useCart = () => {
     getCartData,
     addItem,
     deleteItemCart,
+    deleteAllItemsCart,
     incrementItemCart,
     decrementItemCart,
     error,

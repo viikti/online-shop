@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import CartService from "../../../services/CartService";
 import OrderService from "../../../services/OrderService";
-import { useDispatch } from "react-redux";
 
 export const getItemsThunk = createAsyncThunk(
   "cart/getItems",

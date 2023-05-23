@@ -20,6 +20,7 @@ const CartView = ({
   onDecrementItem,
   onCreateOrder,
   success,
+  deleteAllItemsCart,
 }) => (
   <div className={styles.wrapper}>
     {isLoading ? (
@@ -70,6 +71,13 @@ const CartView = ({
               </div>
             ))
           )}
+          <div className={styles.buttonsContainer}>
+            <p>DELETE ALL PRODUCTS</p>
+            <DeleteIcon
+              sx={{ cursor: "pointer" }}
+              onClick={() => deleteAllItemsCart(cartItems)}
+            />
+          </div>
         </div>
 
         <div className={styles.totalPriceContainer}>

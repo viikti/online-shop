@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import CartView from "../components/CartView";
 import useCart from "../../../hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const CartContainer = () => {
     incrementItemCart,
     deleteItemCart,
     error,
-    isLoading,
+    deleteAllItemsCart,
   } = useCart();
 
   const handleCreateOrder = useCallback(() => {
@@ -48,6 +48,7 @@ const CartContainer = () => {
       error={error}
       success={order.success}
       onCreateOrder={handleCreateOrder}
+      deleteAllItemsCart={deleteAllItemsCart}
     />
   );
 };

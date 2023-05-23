@@ -1,4 +1,4 @@
-import PropTypes, { checkPropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import RegistrationForm from "../RegistrationForm";
 import Banner from "../../../../commonComponents/Banner";
 

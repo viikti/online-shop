@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useFormik } from "formik";
-import { Navigate } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import omit from "lodash/omit";
 import { ROUTE_NAMES } from "routes/RouteName";
