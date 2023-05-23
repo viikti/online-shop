@@ -9,6 +9,7 @@ import PokemonDetailsContainer from "../pages/PokemonDetails/containers/PokemonD
 import ProfileContainer from "../pages/Profile/containers/ProfileContainer";
 import CartContainer from "../pages/Cart/containers/CartContainer";
 import PrivateRoutes from "./PrivateRoutes";
+import DetailsOrderHistoryContainer from "../pages/DetailsOrderHistory/container/DetailsOrderHistoryContainer";
 
 const Router = () => {
   return (
@@ -25,6 +26,10 @@ const Router = () => {
         element={<PokemonDetailsContainer />}
       />
       <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
+      <Route
+        path={ROUTE_NAMES.ORDER_HISTORY_DETAIL}
+        element={<DetailsOrderHistoryContainer />}
+      />
       <Route path={ROUTE_NAMES.CART} element={<CartContainer />} />
     </Routes>
   );

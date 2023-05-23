@@ -7,7 +7,6 @@ import {
   getItemsThunk,
   updateItemThunk,
 } from "../Thunk";
-import Omit from "lodash/omit";
 
 const initialState = {
   totalPrice: 0,

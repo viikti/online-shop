@@ -1,5 +1,7 @@
+import { memo, useState } from "react";
+import { PropTypes } from "prop-types";
+
 import { useTheme } from "@mui/material/styles";
-import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import TablePagination from "@mui/material/TablePagination";
 import IconButton from "@mui/material/IconButton";
@@ -7,7 +9,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import React, { useState } from "react";
+
 import { customDate } from "../../utils";
 
 import styles from "./styles.module.scss";
@@ -31,6 +33,7 @@ const TablePaginationActions = (props) => {
   const handleLastPageButtonClick = (event) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
+
   return (
     <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
@@ -97,6 +100,7 @@ const CustomPaginationActionsTable = ({
   };
 
   const price = (totalPrice) => `$ ${totalPrice}`;
+
   return (
     <table className={styles.wrapper}>
       <tbody>

@@ -13,7 +13,6 @@ const SignInView = ({
   handleSubmit,
   isAuth,
   isLoading,
-  // handleNotification,
 }) => (
   <div className={styles.wrapper}>
     <Banner />

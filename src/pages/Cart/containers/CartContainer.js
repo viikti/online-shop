@@ -3,7 +3,6 @@ import CartView from "../components/CartView";
 import useCart from "../../../hooks/useCart";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewOrdersThunk } from "../Thunk";
-import { handleUpdateState } from "../reducers/orderReducer";
 
 const CartContainer = () => {
   const dispatch = useDispatch();
@@ -36,17 +35,13 @@ const CartContainer = () => {
     );
   }, [cart, dispatch]);
 
-  useEffect(() => {
-    dispatch(handleUpdateState());
-  }, [dispatch]);
-
   return (
     <CartView
       cart={cart}
       cartItemsQuantity={cartItemsQuantity}
       totalPrice={totalPrice}
       cartItems={cartItems}
-      isLoading={isLoading}
+      isLoading={cart.isLoading}
       onDeleteItem={deleteItemCart}
       onIncrementItem={incrementItemCart}
       onDecrementItem={decrementItemCart}

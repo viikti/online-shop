@@ -5,8 +5,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useCart from "../../hooks/useCart";
 import { useSelector } from "react-redux";
 import { isAuthSelector } from "../../selectors";
+
 const IconCart = () => {
   const { cartItemsQuantity, getCartData } = useCart();
+
   const isAuth = useSelector(isAuthSelector);
 
   useEffect(() => {

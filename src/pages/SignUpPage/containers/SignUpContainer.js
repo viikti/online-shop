@@ -14,7 +14,9 @@ import { useFetching } from "../../../hooks";
 
 const SignUpContainer = () => {
   const { data, errors, handleDataLoad } = useFetching(signUp);
+
   const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -40,12 +42,12 @@ const SignUpContainer = () => {
       return () => clearTimeout(timeout);
     }
   }, [data, navigate]);
-  //
-  // useEffect(() => {
-  //   if (errors?.message) {
-  //     errors.response.data.message = null;
-  //   }
-  // }, [errors]);
+
+  useEffect(() => {
+    if (errors?.message) {
+      errors.response.data.message = null;
+    }
+  }, [errors]);
   return (
     <SignUpLayout
       formik={formik}

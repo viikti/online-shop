@@ -8,10 +8,10 @@ import CustomPaginationActionsTable from "./OrdersHistoryView/OrdersHistory";
 const ProfileView = ({
   usersProfile,
   orders,
-  isLoading,
   onNavigateOrderHistoryDetail,
 }) => {
   const userName = `${usersProfile.firstName} ${usersProfile.lastName}`;
+
   return (
     <div className={styles.wrapper}>
       <>
@@ -39,7 +39,7 @@ const ProfileView = ({
           <h2 className={styles.subtitle}>Recent Order History</h2>
 
           <div className={styles.orderHistoryContainer}>
-            {orders?.length ? (
+            {orders?.length > 0 ? (
               <CustomPaginationActionsTable
                 orders={orders}
                 onNavigateOrderHistoryDetail={onNavigateOrderHistoryDetail}
@@ -62,6 +62,12 @@ ProfileView.propTypes = {
     lastName: PropTypes.string,
     phone: PropTypes.string,
   }).isRequired,
+  orders: PropTypes.arrayOf(PropTypes.shape),
+  isLoading: PropTypes.bool.isRequired,
+  onNavigateOrderHistoryDetail: PropTypes.func.isRequired,
+};
+ProfileView.defaultProps = {
+  orders: null,
 };
 
 export default ProfileView;

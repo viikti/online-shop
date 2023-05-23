@@ -6,4 +6,5 @@ export const ROUTE_NAMES = {
   DETAILS_POKEMON: "/pokemon/:id",
   PROFILE: "/profile",
   CART: "/cart",
+  ORDER_HISTORY_DETAIL: "/profile/:id",
 };

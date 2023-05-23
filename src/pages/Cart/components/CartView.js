@@ -9,12 +9,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import ChangeQuantityButton from "../../../../src/commonComponents/ChangeQuantityButton";
 import SnackbarWithAlert from "../../../commonComponents/Snackbar";
-import { Link } from "@mui/material";
 
 const CartView = ({
   cart,
   cartItemsQuantity,
-  totalPrice,
   cartItems,
   isLoading,
   onDeleteItem,
@@ -24,79 +22,80 @@ const CartView = ({
   success,
 }) => (
   <div className={styles.wrapper}>
-    <div className={styles.cartContainer}>
-      <div className={styles.cart}>
-        <h1 className={styles.title}>My Cart</h1>
+    {isLoading ? (
+      <Spinner color={`yellow`} />
+    ) : (
+      <div className={styles.cartContainer}>
+        <div className={styles.cart}>
+          <h1 className={styles.title}>My Cart</h1>
 
-        {!cartItemsQuantity ? (
-          <div className={styles.titleCart}>
-            <p>
-              Your shopping cart is empty. If you see something you would like
-              to add to your shopping cart when shopping, click Add to Cart.
-            </p>
-            <NavLink className={styles.linkShop} to={ROUTE_NAMES.POKEMON}>
-              Back to store
-            </NavLink>
-          </div>
-        ) : (
-          cartItems.map((item) => (
-            <div key={item.id} className={styles.cardContainer}>
-              <div className={styles.card}>
-                <img height={100} src={item.image} alt="pokemon" />
+          {!cartItemsQuantity ? (
+            <div className={styles.titleCart}>
+              <p>
+                Your shopping cart is empty. If you see something you would like
+                to add to your shopping cart when shopping, click Add to Cart.
+              </p>
+              <NavLink className={styles.linkShop} to={ROUTE_NAMES.POKEMON}>
+                Back to store
+              </NavLink>
+            </div>
+          ) : (
+            cartItems.map((item) => (
+              <div key={item.id} className={styles.cardContainer}>
+                <div className={styles.card}>
+                  <img height={100} src={item.image} alt="pokemon" />
 
-                <div className={styles.info}>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.price}>
-                    <p>Price: $ </p>
-                    <p>{item.price * item.quantity}</p>
+                  <div className={styles.info}>
+                    <div className={styles.name}>{item.name}</div>
+                    <div className={styles.price}>
+                      <p>Price: $ </p>
+                      <p>{item.price * item.quantity}</p>
+                    </div>
                   </div>
                 </div>
+
+                <div className={styles.buttonsContainer}>
+                  <DeleteIcon
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => onDeleteItem(item.id)}
+                  />
+
+                  <ChangeQuantityButton
+                    onDecrementItem={onDecrementItem}
+                    quantity={item.quantity}
+                    onIncrementItem={onIncrementItem}
+                    id={item.id}
+                  />
+                </div>
               </div>
-
-              <div className={styles.buttonsContainer}>
-                <DeleteIcon
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => onDeleteItem(item.id)}
-                />
-
-                <ChangeQuantityButton
-                  onDecrementItem={onDecrementItem}
-                  quantity={item.quantity}
-                  onIncrementItem={onIncrementItem}
-                  id={item.id}
-                />
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-
-      <div className={styles.totalPriceContainer}>
-        <h2 className={styles.titleTotalPrice}>Total price</h2>
-        <div className={styles.total}>
-          <div>Total</div>
-          <div className={styles.price}>
-            <p>$</p>
-            <p>{cart?.totalPrice}</p>
-          </div>
+            ))
+          )}
         </div>
-        <button
-          type="submit"
-          disabled={!cart.quantity}
-          onClick={onCreateOrder}
-          className={styles.buttonOrder}
-        >
-          Order
-        </button>
+
+        <div className={styles.totalPriceContainer}>
+          <h2 className={styles.titleTotalPrice}>Total price</h2>
+          <div className={styles.total}>
+            <div>Total</div>
+            <div className={styles.price}>
+              <p>$</p>
+              <p>{cart?.totalPrice}</p>
+            </div>
+          </div>
+          <button
+            type="submit"
+            disabled={!cart.quantity}
+            onClick={onCreateOrder}
+            className={styles.buttonOrder}
+          >
+            Order
+          </button>
+        </div>
       </div>
-    </div>
-    <NavLink className={styles.linkShop} to={ROUTE_NAMES.POKEMON}>
-      Back to store
-    </NavLink>
+    )}
 
     {success && (
       <SnackbarWithAlert
-        timeAlert={3000}
+        timeAlert={3500}
         textAlert="Your order is accepted!"
         severity="success"
       />
