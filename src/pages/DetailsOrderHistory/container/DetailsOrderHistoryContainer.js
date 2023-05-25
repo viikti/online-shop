@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 const DetailsOrderHistoryContainer = () => {
   const { id } = useParams();
+
   const dispatch = useDispatch();
 
   const orders = useSelector(orderSelector);
 
   const orderItems = useSelector((state) => orderDetailsSelector(state, id));
-
+  console.log(orderItems, `loo`);
   const isLoading = useSelector(orderIsLoading);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const DetailsOrderHistoryContainer = () => {
       dispatch(getOrdersThunk());
     }
   }, [orders, dispatch]);
+
   return (
     <DetailsOrderHistoryView orderItems={orderItems} isLoading={isLoading} />
   );

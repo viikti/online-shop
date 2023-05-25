@@ -8,37 +8,40 @@ import Pagination from "../../../../commonComponents/Pagination";
 
 import styles from "./styles.module.scss";
 import startCase from "lodash/startCase";
-import { useCard } from "../../../../hooks";
+import { useSelector } from "react-redux";
+import { mergedWithCartSelector } from "../../selectors";
 
 const ShopView = ({
-  pokemons,
   isLoading,
   page,
   onPageChange,
   onNavigateToPokemonDetails,
   errors,
 }) => {
-  const { addItem } = useCard();
-
+  const pokemons = useSelector(mergedWithCartSelector);
   return (
     <div className={styles.wrapper}>
       <div className={styles.shopContainer}>
         <ShopHeader />
 
         <div className={styles.shop}>
-          {isLoading && <Spinner color={"yellow"} />}
+          {isLoading ? (
+            <Spinner color="yellow" />
+          ) : (
+            pokemons?.map((pokemon) => (
+              <ProductCard
+                key={pokemon.id}
+                id={pokemon.id}
+                name={startCase(pokemon.name)}
+                image={pokemon.image}
+                price={pokemon.price}
+                quantity={pokemon.quantity}
+                onNavigateToPokemonDetails={onNavigateToPokemonDetails}
+              />
+            ))
+          )}
 
-          <ProductCard
-            pokemons={pokemons}
-            key={pokemons.id}
-            id={pokemons.id}
-            name={startCase(pokemons.name)}
-            image={pokemons.image}
-            price={pokemons.price}
-            quantity={pokemons.quantity}
-            handleAddCart={addItem}
-            onNavigateToPokemonDetails={onNavigateToPokemonDetails}
-          />
+          {errors && <div style={{ color: "red" }}>{errors}</div>}
         </div>
 
         <div className={styles.pagination}>

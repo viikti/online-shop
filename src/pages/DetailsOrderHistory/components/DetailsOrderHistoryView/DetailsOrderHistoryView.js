@@ -4,6 +4,8 @@ import startCase from "lodash/startCase";
 import Spinner from "../../../../commonComponents/Spinner";
 
 import styles from "./styles.module.scss";
+import { useSelector } from "react-redux";
+import { orderDetailsSelector } from "../../../Cart/selectors";
 
 const DetailsOrderHistoryView = ({ orderItems, isLoading }) => {
   return (

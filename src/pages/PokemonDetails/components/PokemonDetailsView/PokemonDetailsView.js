@@ -58,7 +58,6 @@ const PokemonDetailsView = ({
                 <div key={stat.title} className={styles.stats}>
                   <img height={20} src={stat.icon} alt="icon" />
                   <p className={styles.stat}>{stat.title}</p>
-                  <p>-</p>
                   <p className={styles.stat}>{stat.value}</p>
                 </div>
               ))}
@@ -69,7 +68,6 @@ const PokemonDetailsView = ({
               {pokemonDetails.abilities?.map((ability) => (
                 <div key={ability.title} className={styles.ability}>
                   <p style={{ width: "15%" }}>{startCase(ability.title)}</p>
-                  <p>-</p>
                   <p style={{ width: "85%" }}>
                     {lowerCase(ability.description)}
                   </p>

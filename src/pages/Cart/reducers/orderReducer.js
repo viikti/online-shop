@@ -8,7 +8,7 @@ const initialState = {
   success: false,
 };
 const orderSlice = createSlice({
-  name: `order`,
+  name: "order",
   initialState,
   reducers: {},
 

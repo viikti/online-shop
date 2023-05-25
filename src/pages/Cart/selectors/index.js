@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-
 export const cartSelector = (state) => state.cart;
 
 export const cartItemsSelector = createSelector(
@@ -35,22 +34,8 @@ export const orderDetailsSelector = createSelector(
     if (order && id) {
       const orderItem = order.find(({ _id: itemId }) => itemId === id);
 
-      return orderItem?.items;
+      return orderItem?.itemsList;
     }
     return null;
   }
 );
-
-//ORDER SELECTOR
-
-// export const orderSelector = (state) => state.order;
-//
-// export const orderDataSelector = createSelector(
-//     orderSelector,
-//     (order)=> order.data
-// );
-//
-// export const orderIsLoadingSelector = createSelector(
-//     orderSelector,
-//     (order)=> order.isLoading
-// );

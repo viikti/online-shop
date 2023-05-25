@@ -14,13 +14,12 @@ const PokemonContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const pokemons = useSelector(pokemonsSelector.data);
   const isLoading = useSelector(pokemonsSelector.isLoading);
   const errors = useSelector(pokemonsSelector.errors);
 
   const [page, handlePageChange] = usePagination();
 
-  const handleNavigateToPokemonDetail = useCallback(
+  const navigateToPokemonDetail = useCallback(
     (id) => {
       navigate(`${ROUTE_NAMES.POKEMON}/${id}`);
     },
@@ -28,17 +27,16 @@ const PokemonContainer = () => {
   );
 
   useEffect(() => {
-    dispatch(getPokemonsThunk({ page, limit: 10 }));
+    dispatch(getPokemonsThunk({ page, limit: 16 }));
   }, [dispatch, page]);
 
   return (
     <ShopView
-      pokemons={pokemons}
       isLoading={isLoading}
       errors={errors}
       page={page}
       onPageChange={handlePageChange}
-      onNavigateToPokemonDetails={handleNavigateToPokemonDetail}
+      onNavigateToPokemonDetails={navigateToPokemonDetail}
     />
   );
 };

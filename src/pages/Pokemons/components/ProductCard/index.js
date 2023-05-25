@@ -7,46 +7,61 @@ import { upperCase, capitalize } from "lodash";
 import { ROUTE_NAMES } from "../../../../routes/RouteName";
 import useCart from "../../../../hooks/useCart";
 import styles from "./styles.module.scss";
+import ChangeQuantityButton from "../../../../commonComponents/ChangeQuantityButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+const ProductCard = ({
+  id,
+  name,
+  image,
+  price,
+  quantity,
+  onNavigateToPokemonDetails,
+}) => {
+  const { addItem, decrementItemCart, deleteItemCart, incrementItemCart } =
+    useCart();
 
-const ProductCard = ({ pokemons, id, name, image, price }) => {
-  const { addItem } = useCart();
-
+  const totalPrice = `$ ${price}`;
   const items = { id, name, image, price, quantity: 1 };
 
   return (
-    <div className={styles.wrapper}>
-      {pokemons.map(({ id, name, price, image }) => (
-        <div key={id} className={styles.listWrapper}>
-          <h2>{upperCase(name)}</h2>
-          <img src={image} alt={name} />
-          <p className={styles.price}> ${price}</p>
+    <div className={quantity ? styles.wrapperQuantity : styles.wrapper}>
+      <div
+        aria-hidden="true"
+        onClick={() => onNavigateToPokemonDetails(id)}
+        className={styles.imageContainer}
+      >
+        <img className={styles.image} src={image} alt="pokemon" />
+      </div>
 
-          <div className={styles.buttonContainer}>
-            <Button
-              onClick={() =>
-                addItem({
-                  id,
-                  name,
-                  image,
-                  price,
-                  quantity: 1,
-                })
-              }
-              variant="contained"
-              size="medium"
-              color="warning"
+      <div className={styles.infoContainer}>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.price}>{totalPrice}</div>
+
+        <div className={styles.buttonContainer}>
+          {quantity ? (
+            <div className={styles.cart}>
+              <ChangeQuantityButton
+                id={id}
+                quantity={quantity}
+                onDecrementItem={decrementItemCart}
+                onIncrementItem={incrementItemCart}
+              />
+              <DeleteIcon
+                sx={{ cursor: "pointer", fontSize: 27 }}
+                onClick={() => deleteItemCart(id)}
+              />
+            </div>
+          ) : (
+            <button
+              type="submit"
+              onClick={() => addItem(items)}
+              className={styles.button}
             >
-              BUY
-            </Button>
-
-            <Link to={`/pokemons/${id}`}>
-              <Button variant="contained" size="medium" color="info">
-                <a href={`${ROUTE_NAMES.POKEMON}/${id}`}>DETAILS</a>
-              </Button>
-            </Link>
-          </div>
+              Add to cart
+            </button>
+          )}
         </div>
-      ))}
+      </div>
     </div>
   );
 };
