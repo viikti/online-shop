@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 const RegistrationForm = ({
   formik,
   data,
-  errorsResponce,
+  error,
   values,
   errors,
   onChange,
