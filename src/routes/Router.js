@@ -20,17 +20,17 @@ const Router = () => {
 
       <Route element={<PrivateRoutes />}>
         <Route path={ROUTE_NAMES.POKEMON} element={<PokemonContainer />} />
+        <Route
+          path={ROUTE_NAMES.DETAILS_POKEMON}
+          element={<PokemonDetailsContainer />}
+        />
+        <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
+        <Route
+          path={ROUTE_NAMES.ORDER_HISTORY_DETAIL}
+          element={<DetailsOrderHistoryContainer />}
+        />
+        <Route path={ROUTE_NAMES.CART} element={<CartContainer />} />
       </Route>
-      <Route
-        path={ROUTE_NAMES.DETAILS_POKEMON}
-        element={<PokemonDetailsContainer />}
-      />
-      <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
-      <Route
-        path={ROUTE_NAMES.ORDER_HISTORY_DETAIL}
-        element={<DetailsOrderHistoryContainer />}
-      />
-      <Route path={ROUTE_NAMES.CART} element={<CartContainer />} />
     </Routes>
   );
 };

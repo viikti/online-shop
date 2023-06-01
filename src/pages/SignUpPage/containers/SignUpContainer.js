@@ -36,7 +36,7 @@ const SignUpContainer = () => {
   useEffect(() => {
     if (data?.data.success) {
       const timeout = setTimeout(() => {
-        navigate(ROUTE_NAMES.SIGN_IN);
+        navigate(ROUTE_NAMES.POKEMON);
       }, 2000);
 
       return () => clearTimeout(timeout);

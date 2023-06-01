@@ -27,7 +27,7 @@ const PokemonContainer = () => {
   );
 
   useEffect(() => {
-    dispatch(getPokemonsThunk({ page, limit: 16 }));
+    dispatch(getPokemonsThunk({ page, limit: 14 }));
   }, [dispatch, page]);
 
   return (

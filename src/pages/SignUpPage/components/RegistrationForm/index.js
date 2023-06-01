@@ -121,7 +121,7 @@ const RegistrationForm = ({
           </button>
         </div>
         <div className={styles.buttons}>
-          <NavLink to={ROUTE_NAMES.SIGN_IN} className={styles.buttonSignIn}>
+          <NavLink to={ROUTE_NAMES.POKEMON} className={styles.buttonSignIn}>
             Sign in
           </NavLink>
         </div>

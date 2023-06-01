@@ -32,13 +32,13 @@ const SignInView = ({
       />
     )}
 
-    {error && (
-      <SnackbarWithAlert
-        timeAlert={3000}
-        textAlert={error.message}
-        severity="error"
-      />
-    )}
+    {/*{error && (*/}
+    {/*  <SnackbarWithAlert*/}
+    {/*    timeAlert={3000}*/}
+    {/*    textAlert={error.message}*/}
+    {/*    severity="error"*/}
+    {/*  />*/}
+    {/*)}*/}
   </div>
 );
 

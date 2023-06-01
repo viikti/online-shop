@@ -12,12 +12,14 @@
     padding: 20px;
     border: 2px solid #fed61b;
     border-radius: 0 0 20px 0;
+    margin-bottom: 15px;
 
     .order {
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border: 1px solid #fed61b;
 
       .name {
         font-size: 28px;
